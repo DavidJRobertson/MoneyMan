@@ -3,13 +3,13 @@ var config = {
 	"commandPrefix": "!",
 	"currencyRateTTL": 12 * 60 * 60 * 1000,
 	"selectedCurrencies": [
-		"GBP",
 		"EUR",
+		"GBP",
+		"CHF",
+		"RON",
 		"USD",
 		"AUD",
-		"CAD",
-		"RON",
-		"CHF"
+		"CAD"
 	]
 }
 
@@ -54,7 +54,7 @@ client.on("ready", () => {
   	.then(link => console.log(link))
   	.catch(console.error);
 
-	client.user.setActivity('Chemistry', {type: 'WATCHING'});
+	client.user.setActivity('Chemistry HQ', {type: 'WATCHING'});
 });
 client.on("guildCreate", guild => {
 	console.log(`Joined server: ${guild.name} (id: ${guild.id}).`);
@@ -71,21 +71,11 @@ const commands = {
 		const m = await message.channel.send("...");
 		m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
 	},
-
 	"forceRateUpdate": async function(client, message, args) {
 		ratesLastUpdated = 0;
 		await updateRates();
 		message.channel.send("Rates updated from OXR.");
 	},
-
-	"convert": async function(client, message, args) {
-		var inputAmount = args[0];
-		var sourceCurrency = args[1];
-		var destCurrency = args[2];
-		var rates = swap.quoteSync({currency: {baseCurrency: sourceCurrency, quoteCurrency: destCurrency}, cache: true});
-		console.log(rates);
-	},
-
 }
 client.on("message", async message => {  // This event will run on every single message received, from any channel or DM.
 	// Ignore messages from bots (including self)
