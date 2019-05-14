@@ -119,7 +119,7 @@ client.on("message", async message => {
 	for (currencyMention of currencyMentions) {
 		var split = currencyMention.split(" ");
 		var fromCurrency = split[0];
-		if (Object.keys(money.rates).includes(fromCurrency) {
+		if (Object.keys(money.rates).includes(fromCurrency)) {
 			var reply = buildCurrencyReply(currencyMention);
 			message.channel.send(reply);
 		}
@@ -133,11 +133,11 @@ function buildCurrencyReply(currencyMention) {
 	var fromAmount = Number.parseFloat(split[1]);
 
 	var targetResults = [];
-	console.log("selected ", config["selectedCurrencies"]);
 	for (targetCurrency of config["selectedCurrencies"]) {
-		console.log(`target ${targetCurrency}`);
-		var targetAmount = money.convert(fromAmount, {from: fromCurrency, to: targetCurrency});
-		targetResults.push(`${targetAmount.toFixed(2)} ${targetCurrency}`);
+		if (targetCurrency != fromCurrency) {
+			var targetAmount = money.convert(fromAmount, {from: fromCurrency, to: targetCurrency});
+			targetResults.push(`${targetAmount.toFixed(2)} ${targetCurrency}`);
+		}
 	}
 	targetResultString = targetResults.join(", or ");
 
