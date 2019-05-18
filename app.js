@@ -9,7 +9,8 @@ var config = {
 		"RON",
 		"USD",
 		"AUD",
-		"CAD"
+		"CAD",
+		"PLN"
 	]
 }
 
