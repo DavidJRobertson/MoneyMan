@@ -10,7 +10,8 @@ var config = {
 		"USD",
 		"AUD",
 		"CAD",
-		"PLN"
+		"PLN",
+		"HUF"
 	]
 }
 
