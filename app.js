@@ -12,6 +12,15 @@ var config = {
 		"CAD",
 		"PLN",
 		"HUF"
+	],
+	"ignoreCurrencies": [
+		"ALL",
+		"AMD",
+		"BSD",
+		"GHS",
+		"MOP",
+		"TOP",
+		"TRY"
 	]
 }
 
@@ -174,6 +183,11 @@ function scanForCurrencyMentions(msg) {
 
 	// Strip out duplicates
 	result = [... new Set(result)];
+
+	// Filter out ignored currencies
+	result = result.filter(function (currencyStr) {
+		return !config["ignoreCurrencies"].some(currency => currencyStr.startsWith(currency));
+	});
 
 	// return the array of strings, each in the format of "GBP 12.34"
 	return result;
