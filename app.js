@@ -20,7 +20,8 @@ var config = {
 		"GHS",
 		"MOP",
 		"TOP",
-		"TRY"
+		"TRY",
+		"CLP"
 	]
 }
 
