@@ -11,7 +11,8 @@ var config = {
 		"AUD",
 		"CAD",
 		"PLN",
-		"HUF"
+		"HUF",
+                "SEK"
 	],
 	"ignoreCurrencies": [
 		"ALL",
