@@ -22,7 +22,8 @@ var config = {
 		"MOP",
 		"TOP",
 		"TRY",
-		"CLP"
+		"CLP",
+		"CUP"
 	]
 }
 
