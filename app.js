@@ -62,7 +62,7 @@ updateRates();
 
 // DISCORD INIT //
 client.on("ready", () => {
-	console.log(`ChemBot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} servers.`);
+	console.log(`MoneyMan has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} servers.`);
 
 	client.generateInvite(804781379)
   	.then(link => console.log(link))
