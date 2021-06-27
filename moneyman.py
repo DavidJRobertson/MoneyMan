@@ -74,12 +74,18 @@ class CurrencyConverter:
 class CurrencyMessageHandler:
 
     def __init__(self):
-        self.ignored_currencies = ["ALL", "AMD", "BSD", "GHS", "MOP", "TOP", "TRY", "CLP", "CUP"]
-        self.selected_currencies = ["EUR", "GBP", "CHF", "RON", "USD", "AUD", "CAD", "PLN", "HUF", "SEK"]
         self.currency_converter = CurrencyConverter()
+        self.ignored_currencies = []
+        self.selected_currencies = []
 
         with open("symbols.json") as file:
             self.symbol_data = json.load(file)
+            file.close()
+
+        with open("config.json") as file:
+            config = json.load(file)
+            self.ignored_currencies = config["ignored_currencies"]
+            self.selected_currencies = config["selected_currencies"]
             file.close()
 
     async def handle_message(self, msg: str):
@@ -89,11 +95,9 @@ class CurrencyMessageHandler:
 
         replies_to_send = []
         for currency_mention in currency_mentions:
-            split = currency_mention.split(" ")
-            from_currency = split[0]
-            # FIXME: check if from currency is a currency we know about?
             reply = await self.build_currency_reply(currency_mention)
-            replies_to_send.append(reply)
+            if reply is not None:
+                replies_to_send.append(reply)
 
         if len(replies_to_send) != 0:
             reply = "\n".join(replies_to_send)
@@ -160,6 +164,9 @@ class CurrencyMessageHandler:
             if target_currency != from_currency:
                 target_amount = await self.currency_converter.convert(from_amount, from_currency, target_currency)
                 target_results.append("{0:.2f} {1}".format(target_amount, target_currency))
+
+        if len(target_results) == 0:
+            return None
 
         target_results_str = ", or ".join(target_results)
         reply = "{0:.2f} {1} is worth {2}.".format(from_amount, from_currency, target_results_str)

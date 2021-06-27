@@ -1,7 +1,5 @@
 {
-  "commandPrefix": "!",
-  "currencyRateTTL": 43200000,
-  "selectedCurrencies": [
+  "selected_currencies": [
     "EUR",
     "GBP",
     "CHF",
@@ -13,7 +11,7 @@
     "HUF",
     "SEK"
   ],
-  "ignoreCurrencies": [
+  "ignored_currencies": [
     "ALL",
     "AMD",
     "BSD",
