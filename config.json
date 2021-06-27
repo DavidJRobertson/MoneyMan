@@ -1,0 +1,27 @@
+{
+  "commandPrefix": "!",
+  "currencyRateTTL": 43200000,
+  "selectedCurrencies": [
+    "EUR",
+    "GBP",
+    "CHF",
+    "RON",
+    "USD",
+    "AUD",
+    "CAD",
+    "PLN",
+    "HUF",
+    "SEK"
+  ],
+  "ignoreCurrencies": [
+    "ALL",
+    "AMD",
+    "BSD",
+    "GHS",
+    "MOP",
+    "TOP",
+    "TRY",
+    "CLP",
+    "CUP"
+  ]
+}
