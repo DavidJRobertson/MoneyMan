@@ -8,11 +8,14 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "bufferutil": "^4.0.1",
-    "discord.js": "^11.5.1",
-    "dotenv": "^8.2.0",
+    "bufferutil": "^4.0.3",
+    "discord.js": "^12.5.3",
+    "dotenv": "^8.6.0",
+    "erlpack": "github:discord/erlpack",
     "money": "^0.2.0",
     "open-exchange-rates": "^0.3.0",
-    "uws": "*"
+    "utf-8-validate": "^5.0.5",
+    "uws": "^200.0.0",
+    "zlib-sync": "^0.1.7"
   }
 }
