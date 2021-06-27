@@ -190,6 +190,10 @@ class MoneyManClient(discord.Client):
         if reply is not None:
             reply_msg = await message.reply(reply, mention_author=False)
             self.history.append(reply_msg)
+        elif message.channel.type == discord.ChannelType.private:
+            link = await self.get_oauth_url()
+            reply = "You can add this bot to your own server using this link: {}".format(link)
+            await message.channel.send(reply)
 
     def find_history_message(self, source_message):
         for history_msg in self.history:
@@ -222,7 +226,7 @@ class MoneyManClient(discord.Client):
                 await history_msg.delete()
                 self.history.remove(history_msg)
             elif history_msg.content != new_response:
-                await history_msg.edit(content=new_response)
+                await history_msg.edit(content=new_response, allowed_mentions=discord.AllowedMentions.none())
         elif new_response is not None:
             reply_msg = await message.reply(new_response, mention_author=False)
             self.history.append(reply_msg)
