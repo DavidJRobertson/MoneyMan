@@ -17,5 +17,8 @@
     "utf-8-validate": "^5.0.5",
     "uws": "^200.0.0",
     "zlib-sync": "^0.1.7"
+  },
+  "devDependencies": {
+    "eslint": "^7.29.0"
   }
 }
