@@ -160,7 +160,7 @@ class MoneyManClient(discord.Client):
 
     def __init__(self, **options):
         super().__init__(**options)
-        self.history = collections.deque(list(), 128)
+        self.history = collections.deque(list(), 256)
         self.cmh = CurrencyMessageHandler()
 
     async def on_ready(self):
@@ -207,6 +207,26 @@ class MoneyManClient(discord.Client):
         history_msg = self.find_history_message(message)
         if history_msg is not None:
             await history_msg.delete()
+            self.history.remove(history_msg)
+
+    async def on_message_edit(self, message_before_edit, message):
+        # Ignore messages from bots (including self)
+        if message.author.bot:
+            return
+
+        # The edit may mean we have to update our reply or create a new reply.
+        history_msg = self.find_history_message(message)
+        new_response = await self.cmh.handle_message(message.content)
+
+        if history_msg is not None:
+            if new_response is None:
+                await history_msg.delete()
+                self.history.remove(history_msg)
+            elif history_msg.content != new_response:
+                await history_msg.edit(content=new_response)
+        elif new_response is not None:
+            reply_msg = await message.reply(new_response, mention_author=False)
+            self.history.append(reply_msg)
 
 
 if __name__ == "__main__":
