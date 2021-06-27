@@ -28,6 +28,7 @@ updateRates();
 
 // DISCORD INIT //
 const Discord = require("discord.js");
+require("discord-reply")
 const client = new Discord.Client();
 client.on("ready", async () => {
     console.log(`MoneyMan has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} servers.`);
@@ -58,7 +59,7 @@ client.on("guildDelete", guild => {
 });
 client.login(process.env.DISCORD_TOKEN);
 
-// COMMANDS //
+//region COMMANDS
 const commands = {
     "forceRateUpdate": async function (client, message, args) {
         ratesLastUpdated = 0;
@@ -88,6 +89,7 @@ client.on("message", async message => {  // This event will run on every single 
         // unrecognized command
     }
 });
+//endregion
 
 // INLINE CURRENCY CONVERSION //
 client.on("message", async message => {
@@ -114,7 +116,7 @@ client.on("message", async message => {
 
     if (repliesToSend.length !== 0) {
         const reply = repliesToSend.join("\n")
-        await message.channel.send(reply);
+        await message.lineReplyNoMention(reply)
     }
 });
 
@@ -182,7 +184,6 @@ function scanForCurrencyMentions(msg) {
     // return the array of strings, each in the format of "GBP 12.34"
     return result;
 }
-
 
 function currencySymbolToCode(symbol) {
     for (const row of symbolData) {

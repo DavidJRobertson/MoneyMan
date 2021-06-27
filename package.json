@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bufferutil": "^4.0.3",
+    "discord-reply": "^0.1.2",
     "discord.js": "^12.5.3",
     "dotenv": "^8.6.0",
     "erlpack": "github:discord/erlpack",
