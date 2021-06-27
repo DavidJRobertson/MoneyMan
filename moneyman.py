@@ -1,3 +1,4 @@
+import collections
 import logging
 import time
 import discord
@@ -5,6 +6,7 @@ import re
 import json
 import aiohttp
 import os
+import queue
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -115,7 +117,8 @@ class CurrencyMessageHandler:
         result_tuples = []
         for expression in expressions:
             for match in re.finditer(expression, msg):
-                result_tuples.append((self.currency_symbol_to_code(match['currency']).upper(), float(match['quantity'])))
+                result_tuples.append(
+                    (self.currency_symbol_to_code(match['currency']).upper(), float(match['quantity'])))
 
         # Strip out duplicates
         result_tuples = list(dict.fromkeys(result_tuples))
@@ -157,6 +160,7 @@ class MoneyManClient(discord.Client):
 
     def __init__(self, **options):
         super().__init__(**options)
+        self.history = collections.deque(list(), 128)
         self.cmh = CurrencyMessageHandler()
 
     async def on_ready(self):
@@ -185,7 +189,24 @@ class MoneyManClient(discord.Client):
 
         reply = await self.cmh.handle_message(message.content)
         if reply is not None:
-            await message.reply(reply, mention_author=False)
+            reply_msg = await message.reply(reply, mention_author=False)
+            self.history.append(reply_msg)
+
+    def find_history_message(self, source_message):
+        for history_msg in self.history:
+            if history_msg.reference.message_id == source_message.id:
+                return history_msg
+        return None
+
+    async def on_message_delete(self, message):
+        # Ignore messages from bots (including self)
+        if message.author.bot:
+            return
+
+        # If we replied to this deleted message recently, delete our reply.
+        history_msg = self.find_history_message(message)
+        if history_msg is not None:
+            await history_msg.delete()
 
 
 if __name__ == "__main__":
