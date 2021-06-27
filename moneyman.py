@@ -6,7 +6,6 @@ import re
 import json
 import aiohttp
 import os
-import queue
 from dotenv import load_dotenv
 
 load_dotenv()
