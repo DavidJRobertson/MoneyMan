@@ -1,0 +1,68 @@
+[
+  {
+    "symbol": "£",
+    "currency": "GBP",
+    "prefix": true,
+    "postfix": false
+  },
+  {
+    "symbol": "€",
+    "currency": "EUR",
+    "prefix": true,
+    "postfix": true
+  },
+  {
+    "symbol": "$",
+    "currency": "USD",
+    "prefix": true,
+    "postfix": true
+  },
+  {
+    "symbol": "₹",
+    "currency": "INR",
+    "prefix": true,
+    "postfix": true
+  },
+  {
+    "symbol": "Rs",
+    "currency": "INR",
+    "prefix": true,
+    "postfix": true
+  },
+  {
+    "symbol": "Rs.",
+    "currency": "INR",
+    "prefix": true,
+    "postfix": true
+  },
+  {
+    "symbol": "₿",
+    "currency": "BTC",
+    "prefix": true,
+    "postfix": true
+  },
+  {
+    "symbol": "¥",
+    "currency": "JPY",
+    "prefix": true,
+    "postfix": true
+  },
+  {
+    "symbol": "zł",
+    "currency": "PLN",
+    "prefix": true,
+    "postfix": true
+  },
+  {
+    "symbol": "zl",
+    "currency": "PLN",
+    "prefix": true,
+    "postfix": true
+  },
+  {
+    "symbol": "₽",
+    "currency": "RUB",
+    "prefix": true,
+    "postfix": true
+  }
+]

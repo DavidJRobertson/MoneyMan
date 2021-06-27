@@ -1,5 +1,6 @@
 require('dotenv').config()
 let config = require("./config.json");
+const symbolData = require("./symbols.json")
 
 const util = require('util');
 
@@ -124,8 +125,7 @@ function buildCurrencyReply(currencyMention) {
     const fromAmount = Number.parseFloat(split[1]);
 
     let targetResults = [];
-    let targetCurrency;
-    for (targetCurrency of config["selectedCurrencies"]) {
+    for (const targetCurrency of config["selectedCurrencies"]) {
         if (targetCurrency !== fromCurrency) {
             const targetAmount = money.convert(fromAmount, {from: fromCurrency, to: targetCurrency});
             targetResults.push(`${targetAmount.toFixed(2)} ${targetCurrency}`);
@@ -137,40 +137,37 @@ function buildCurrencyReply(currencyMention) {
 }
 
 function scanForCurrencyMentions(msg) {
-    let amount;
-    let code;
-    let match;
     let result = [];
 
     // £12.34 $12.34 €12.34
-    const symbolPrefixMatches = msg.matchAll(/([£€$])\s?(\d+(?:\.\d{1,2})?)/g);
-    for (match of symbolPrefixMatches) {
-        code = currencySymbolToCode(match[1]);
-        amount = Number.parseFloat(match[2]);
+    const symbolPrefixMatches = msg.matchAll(/([£€$₹])\s?(\d+(?:\.\d{1,2})?)/g);
+    for (const match of symbolPrefixMatches) {
+        const code = currencySymbolToCode(match[1]);
+        const amount = Number.parseFloat(match[2]);
         result.push([code, amount].join(" "));
     }
 
     // 12.34$ 12.34€
-    const symbolSuffixMatches = msg.matchAll(/(\d+(?:\.\d{1,2})?)\s?([€$])/g);
-    for (match of symbolSuffixMatches) {
-        code = currencySymbolToCode(match[2]);
-        amount = Number.parseFloat(match[1]);
+    const symbolSuffixMatches = msg.matchAll(/(\d+(?:\.\d{1,2})?)\s?([€$₹])/g);
+    for (const match of symbolSuffixMatches) {
+        const code = currencySymbolToCode(match[2]);
+        const amount = Number.parseFloat(match[1]);
         result.push([code, amount].join(" "));
     }
 
     // GBP 12.34
     const codePrefixMatches = msg.matchAll(/(?<!\w)([a-zA-Z]{3})\s?(\d+(?:\.\d{1,2})?)/g);
-    for (match of codePrefixMatches) {
-        code = match[1].toUpperCase();
-        amount = Number.parseFloat(match[2]);
+    for (const match of codePrefixMatches) {
+        const code = match[1].toUpperCase();
+        const amount = Number.parseFloat(match[2]);
         result.push([code, amount].join(" "));
     }
 
     // 12.34 GBP
     const codeSuffixMatches = msg.matchAll(/(\d+(?:\.\d{1,2})?)\s?([a-zA-Z]{3})(?!\w)/g);
-    for (match of codeSuffixMatches) {
-        code = match[2].toUpperCase();
-        amount = Number.parseFloat(match[1]);
+    for (const match of codeSuffixMatches) {
+        const code = match[2].toUpperCase();
+        const amount = Number.parseFloat(match[1]);
         result.push([code, amount].join(" "));
     }
 
@@ -186,12 +183,11 @@ function scanForCurrencyMentions(msg) {
     return result;
 }
 
+
 function currencySymbolToCode(symbol) {
-    if (symbol === "£") {
-        return "GBP";
-    } else if (symbol === "€") {
-        return "EUR";
-    } else if (symbol === "$") {
-        return "USD";
+    for (const row of symbolData) {
+        if (row["symbol"] === symbol) {
+            return row["currency"]
+        }
     }
 }
