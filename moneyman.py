@@ -78,9 +78,14 @@ class CurrencyMessageHandler:
         self.currency_converter = CurrencyConverter()
         self.ignored_currencies = []
         self.selected_currencies = []
+        self.flags = {}
 
         with open("symbols.json") as file:
             self.symbol_data = json.load(file)
+            file.close()
+
+        with open("flags.json") as file:
+            self.flags = json.load(file)
             file.close()
 
         with open("config.json") as file:
@@ -89,14 +94,17 @@ class CurrencyMessageHandler:
             self.selected_currencies = config["selected_currencies"]
             file.close()
 
-    async def handle_message(self, msg: str):
+    async def handle_message(self, msg: str, response_reactions=[]):
         currency_mentions = await self.scan_for_currency_mentions(msg)
         if len(currency_mentions) > 0:
             print("Got currency mentions: " + str(currency_mentions))
 
+        additional_target_currencies = self.get_currencies_from_response_reactions(response_reactions)
+        target_currencies = self.selected_currencies + additional_target_currencies
+
         replies_to_send = []
         for currency_mention in currency_mentions:
-            reply = await self.build_currency_reply(currency_mention)
+            reply = await self.build_currency_reply(currency_mention, target_currencies)
             if reply is not None:
                 replies_to_send.append(reply)
 
@@ -136,13 +144,13 @@ class CurrencyMessageHandler:
                 return row['currency']
         return symbol
 
-    async def build_currency_reply(self, currency_mention):
+    async def build_currency_reply(self, currency_mention, target_currencies):
         print("Building currency reply for input {0}".format(currency_mention))
         from_currency = currency_mention[0]
         from_amount = currency_mention[1]
 
         target_results = []
-        for target_currency in self.selected_currencies:
+        for target_currency in target_currencies:
             if target_currency != from_currency:
                 target_amount = await self.currency_converter.convert(from_amount, from_currency, target_currency)
                 target_results.append("{0:.2f} {1}".format(target_amount, target_currency))
@@ -153,6 +161,18 @@ class CurrencyMessageHandler:
         target_results_str = ", or ".join(target_results)
         reply = "{0:.2f} {1} is worth {2}.".format(from_amount, from_currency, target_results_str)
         return reply
+
+    def get_currencies_from_response_reactions(self, response_reactions):
+        emojis = []
+        for reaction in response_reactions:
+            if (reaction.count > 0) and (not reaction.custom_emoji):
+                emojis.append(reaction.emoji)
+
+        currencies = []
+        for emoji in emojis:
+            if emoji in self.flags:
+                currencies.append(self.flags[emoji])
+        return currencies
 
 
 class MoneyManClient(discord.Client):
@@ -230,6 +250,32 @@ class MoneyManClient(discord.Client):
         elif new_response is not None:
             reply_msg = await message.reply(new_response, mention_author=False)
             self.history.append(reply_msg)
+
+    async def on_reaction_add(self, reaction, user):
+        await self.handle_reaction_change(reaction.message)
+
+    async def on_reaction_remove(self, reaction, user):
+        await self.handle_reaction_change(reaction.message)
+
+    async def on_reaction_clear(self, message, reactions):
+        await self.handle_reaction_change(message)
+
+    async def on_reaction_clear_emoji(self, reaction):
+        await self.handle_reaction_change(reaction.message)
+
+    async def handle_reaction_change(self, message):
+        if message in self.history:
+            print("handle_reaction_change")
+            source_msg_ref = message.reference
+            if source_msg_ref is None:
+                return
+            source_msg = source_msg_ref.cached_message
+            if source_msg is None:
+                return
+
+            new_response = await self.cmh.handle_message(source_msg.content, response_reactions=message.reactions)
+            if message.content != new_response:
+                await message.edit(content=new_response, allowed_mentions=discord.AllowedMentions.none())
 
 
 if __name__ == "__main__":

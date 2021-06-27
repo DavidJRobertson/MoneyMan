@@ -1,570 +1,143 @@
-[
-  {
-    "currency": "EUR",
-    "flag": "🇪🇺"
-  },
-  {
-    "currency": "USD",
-    "flag": "🇺🇸"
-  },
-  {
-    "currency": "CAD",
-    "flag": "🇨🇦"
-  },
-  {
-    "currency": "AED",
-    "flag": "🇦🇪"
-  },
-  {
-    "currency": "AFN",
-    "flag": "🇦🇫"
-  },
-  {
-    "currency": "ALL",
-    "flag": "🇦🇱"
-  },
-  {
-    "currency": "AMD",
-    "flag": "🇦🇲"
-  },
-  {
-    "currency": "ANG",
-    "flag": "🇧🇶"
-  },
-  {
-    "currency": "AOA",
-    "flag": "🇦🇴"
-  },
-  {
-    "currency": "ARS",
-    "flag": "🇦🇷"
-  },
-  {
-    "currency": "AUD",
-    "flag": "🇦🇺"
-  },
-  {
-    "currency": "AZN",
-    "flag": "🇦🇿"
-  },
-  {
-    "currency": "BAM",
-    "flag": "🇧🇦"
-  },
-  {
-    "currency": "BDT",
-    "flag": "🇧🇩"
-  },
-  {
-    "currency": "BGN",
-    "flag": "🇧🇬"
-  },
-  {
-    "currency": "BHD",
-    "flag": "🇧🇭"
-  },
-  {
-    "currency": "BIF",
-    "flag": "🇧🇮"
-  },
-  {
-    "currency": "BND",
-    "flag": "🇧🇳"
-  },
-  {
-    "currency": "BMD",
-    "flag": "🇧🇲"
-  },
-  {
-    "currency": "BOB",
-    "flag": "🇧🇴"
-  },
-  {
-    "currency": "BRL",
-    "flag": "🇧🇷"
-  },
-  {
-    "currency": "BTN",
-    "flag": "🇧🇹"
-  },
-  {
-    "currency": "BWP",
-    "flag": "🇧🇼"
-  },
-  {
-    "currency": "BYR",
-    "flag": "🇧🇾"
-  },
-  {
-    "currency": "BZD",
-    "flag": "🇧🇿"
-  },
-  {
-    "currency": "CDF",
-    "flag": "🇨🇩"
-  },
-  {
-    "currency": "CHF",
-    "flag": "🇨🇭"
-  },
-  {
-    "currency": "CLP",
-    "flag": "🇨🇱"
-  },
-  {
-    "currency": "CNY",
-    "flag": "🇨🇳"
-  },
-  {
-    "currency": "COP",
-    "flag": "🇨🇴"
-  },
-  {
-    "currency": "CRC",
-    "flag": "🇨🇷"
-  },
-  {
-    "currency": "CVE",
-    "flag": "🇨🇻"
-  },
-  {
-    "currency": "CZK",
-    "flag": "🇨🇿"
-  },
-  {
-    "currency": "DJF",
-    "flag": "🇩🇯"
-  },
-  {
-    "currency": "DKK",
-    "flag": "🇩🇰"
-  },
-  {
-    "currency": "DOP",
-    "flag": "🇩🇴"
-  },
-  {
-    "currency": "DZD",
-    "flag": "🇩🇿"
-  },
-  {
-    "currency": "EEK",
-    "flag": "🇪🇪"
-  },
-  {
-    "currency": "EGP",
-    "flag": "🇪🇬"
-  },
-  {
-    "currency": "ERN",
-    "flag": "🇪🇷"
-  },
-  {
-    "currency": "ETB",
-    "flag": "🇪🇹"
-  },
-  {
-    "currency": "FKP",
-    "flag": "🇫🇰"
-  },
-  {
-    "currency": "GBP",
-    "flag": "🇬🇧"
-  },
-  {
-    "currency": "GBP",
-    "flag": "\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC77\uDB40\uDC6C\uDB40\uDC73\uDB40\uDC7F"
-  },
-  {
-    "currency": "GBP",
-    "flag": "\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74\uDB40\uDC7F"
-  },
-  {
-    "currency": "GBP",
-    "flag": "\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67\uDB40\uDC7F"
-  },
-  {
-    "currency": "GEL",
-    "flag": "🇬🇪"
-  },
-  {
-    "currency": "GHS",
-    "flag": "🇬🇭"
-  },
-  {
-    "currency": "GIP",
-    "flag": "🇬🇮"
-  },
-  {
-    "currency": "GNF",
-    "flag": "🇬🇳"
-  },
-  {
-    "currency": "GTQ",
-    "flag": "🇬🇹"
-  },
-  {
-    "currency": "HKD",
-    "flag": "🇭🇰"
-  },
-  {
-    "currency": "HNL",
-    "flag": "🇭🇳"
-  },
-  {
-    "currency": "HRK",
-    "flag": "🇭🇷"
-  },
-  {
-    "currency": "HUF",
-    "flag": "🇭🇺"
-  },
-  {
-    "currency": "IDR",
-    "flag": "🇮🇩"
-  },
-  {
-    "currency": "ILS",
-    "flag": "🇮🇱"
-  },
-  {
-    "currency": "INR",
-    "flag": "🇮🇳"
-  },
-  {
-    "currency": "IQD",
-    "flag": "🇮🇶"
-  },
-  {
-    "currency": "IRR",
-    "flag": "🇮🇷"
-  },
-  {
-    "currency": "ISK",
-    "flag": "🇮🇸"
-  },
-  {
-    "currency": "JMD",
-    "flag": "🇯🇲"
-  },
-  {
-    "currency": "JOD",
-    "flag": "🇯🇴"
-  },
-  {
-    "currency": "JPY",
-    "flag": "🇯🇵"
-  },
-  {
-    "currency": "KES",
-    "flag": "🇰🇬"
-  },
-  {
-    "currency": "KHR",
-    "flag": "🇰🇭"
-  },
-  {
-    "currency": "KMF",
-    "flag": "🇰🇲"
-  },
-  {
-    "currency": "KRW",
-    "flag": "🇰🇷"
-  },
-  {
-    "currency": "KWD",
-    "flag": "🇰🇼"
-  },
-  {
-    "currency": "KYD",
-    "flag": "🇰🇾"
-  },
-  {
-    "currency": "KZT",
-    "flag": "🇰🇿"
-  },
-  {
-    "currency": "KES",
-    "flag": "🇰🇪"
-  },
-  {
-    "currency": "LAK",
-    "flag": "🇱🇦"
-  },
-  {
-    "currency": "LBP",
-    "flag": "🇱🇧"
-  },
-  {
-    "currency": "LKR",
-    "flag": "🇱🇰"
-  },
-  {
-    "currency": "LRD",
-    "flag": "🇱🇷"
-  },
-  {
-    "currency": "LTL",
-    "flag": "🇱🇹"
-  },
-  {
-    "currency": "LVL",
-    "flag": "🇱🇻"
-  },
-  {
-    "currency": "LYD",
-    "flag": "🇱🇾"
-  },
-  {
-    "currency": "MAD",
-    "flag": "🇲🇦"
-  },
-  {
-    "currency": "MDL",
-    "flag": "🇲🇩"
-  },
-  {
-    "currency": "MGA",
-    "flag": "🇲🇬"
-  },
-  {
-    "currency": "MKD",
-    "flag": "🇲🇰"
-  },
-  {
-    "currency": "MMK",
-    "flag": "🇲🇲"
-  },
-  {
-    "currency": "MOP",
-    "flag": "🇲🇴"
-  },
-  {
-    "currency": "MUR",
-    "flag": "🇲🇺"
-  },
-  {
-    "currency": "MWK",
-    "flag": "🇲🇼"
-  },
-  {
-    "currency": "MVR",
-    "flag": "🇲🇻"
-  },
-  {
-    "currency": "MXN",
-    "flag": "🇲🇽"
-  },
-  {
-    "currency": "MYR",
-    "flag": "🇲🇾"
-  },
-  {
-    "currency": "MZN",
-    "flag": "🇲🇿"
-  },
-  {
-    "currency": "NAD",
-    "flag": "🇳🇦"
-  },
-  {
-    "currency": "NGN",
-    "flag": "🇳🇬"
-  },
-  {
-    "currency": "NIO",
-    "flag": "🇳🇮"
-  },
-  {
-    "currency": "NOK",
-    "flag": "🇳🇴"
-  },
-  {
-    "currency": "NPR",
-    "flag": "🇳🇵"
-  },
-  {
-    "currency": "NZD",
-    "flag": "🇳🇿"
-  },
-  {
-    "currency": "OMR",
-    "flag": "🇴🇲"
-  },
-  {
-    "currency": "PAB",
-    "flag": "🇵🇦"
-  },
-  {
-    "currency": "PEN",
-    "flag": "🇵🇪"
-  },
-  {
-    "currency": "PHP",
-    "flag": "🇵🇭"
-  },
-  {
-    "currency": "PKR",
-    "flag": "🇵🇰"
-  },
-  {
-    "currency": "PLN",
-    "flag": "🇵🇱"
-  },
-  {
-    "currency": "PYG",
-    "flag": "🇵🇾"
-  },
-  {
-    "currency": "QAR",
-    "flag": "🇶🇦"
-  },
-  {
-    "currency": "RON",
-    "flag": "🇷🇴"
-  },
-  {
-    "currency": "RSD",
-    "flag": "🇷🇸"
-  },
-  {
-    "currency": "RUB",
-    "flag": "🇷🇺"
-  },
-  {
-    "currency": "RWF",
-    "flag": "🇷🇼"
-  },
-  {
-    "currency": "SAR",
-    "flag": "🇸🇦"
-  },
-  {
-    "currency": "SBD",
-    "flag": "🇸🇧"
-  },
-  {
-    "currency": "SDG",
-    "flag": "🇸🇩"
-  },
-  {
-    "currency": "SEK",
-    "flag": "🇸🇪"
-  },
-  {
-    "currency": "SGD",
-    "flag": "🇸🇬"
-  },
-  {
-    "currency": "SLL",
-    "flag": "🇸🇱"
-  },
-  {
-    "currency": "SOS",
-    "flag": "🇸🇴"
-  },
-  {
-    "currency": "SSP",
-    "flag": "🇸🇸"
-  },
-  {
-    "currency": "STN",
-    "flag": "🇸🇹"
-  },
-  {
-    "currency": "SYP",
-    "flag": "🇸🇾"
-  },
-  {
-    "currency": "SZL",
-    "flag": "🇸🇿"
-  },
-  {
-    "currency": "THB",
-    "flag": "🇹🇭"
-  },
-  {
-    "currency": "TJS",
-    "flag": "🇹🇭"
-  },
-  {
-    "currency": "TND",
-    "flag": "🇹🇳"
-  },
-  {
-    "currency": "TOP",
-    "flag": "🇹🇴"
-  },
-  {
-    "currency": "TRY",
-    "flag": "🇹🇷"
-  },
-  {
-    "currency": "TTD",
-    "flag": "🇹🇹"
-  },
-  {
-    "currency": "TWD",
-    "flag": "🇹🇼"
-  },
-  {
-    "currency": "TZS",
-    "flag": "🇹🇿"
-  },
-  {
-    "currency": "UAH",
-    "flag": "🇺🇦"
-  },
-  {
-    "currency": "UGX",
-    "flag": "🇺🇬"
-  },
-  {
-    "currency": "UYU",
-    "flag": "🇺🇾"
-  },
-  {
-    "currency": "UZS",
-    "flag": "🇺🇿"
-  },
-  {
-    "currency": "VEF",
-    "flag": "🇻🇪"
-  },
-  {
-    "currency": "VND",
-    "flag": "🇻🇳"
-  },
-  {
-    "currency": "VUV",
-    "flag": "🇻🇺"
-  },
-  {
-    "currency": "XAF",
-    "flag": "🇨🇫"
-  },
-  {
-    "currency": "XCD",
-    "flag": "🇦🇬"
-  },
-  {
-    "currency": "XOF",
-    "flag": "🇨🇮"
-  },
-  {
-    "currency": "XPF",
-    "flag": "🇵🇫"
-  },
-  {
-    "currency": "YER",
-    "flag": "🇾🇪"
-  },
-  {
-    "currency": "ZAR",
-    "flag": "🇿🇦"
-  },
-  {
-    "currency": "ZMK",
-    "flag": "🇿🇲"
-  }
-]
+{
+  "\ud83c\uddea\ud83c\uddfa": "EUR",
+  "\ud83c\uddfa\ud83c\uddf8": "USD",
+  "\ud83c\udde8\ud83c\udde6": "CAD",
+  "\ud83c\udde6\ud83c\uddea": "AED",
+  "\ud83c\udde6\ud83c\uddeb": "AFN",
+  "\ud83c\udde6\ud83c\uddf1": "ALL",
+  "\ud83c\udde6\ud83c\uddf2": "AMD",
+  "\ud83c\udde7\ud83c\uddf6": "ANG",
+  "\ud83c\udde6\ud83c\uddf4": "AOA",
+  "\ud83c\udde6\ud83c\uddf7": "ARS",
+  "\ud83c\udde6\ud83c\uddfa": "AUD",
+  "\ud83c\udde6\ud83c\uddff": "AZN",
+  "\ud83c\udde7\ud83c\udde6": "BAM",
+  "\ud83c\udde7\ud83c\udde9": "BDT",
+  "\ud83c\udde7\ud83c\uddec": "BGN",
+  "\ud83c\udde7\ud83c\udded": "BHD",
+  "\ud83c\udde7\ud83c\uddee": "BIF",
+  "\ud83c\udde7\ud83c\uddf3": "BND",
+  "\ud83c\udde7\ud83c\uddf2": "BMD",
+  "\ud83c\udde7\ud83c\uddf4": "BOB",
+  "\ud83c\udde7\ud83c\uddf7": "BRL",
+  "\ud83c\udde7\ud83c\uddf9": "BTN",
+  "\ud83c\udde7\ud83c\uddfc": "BWP",
+  "\ud83c\udde7\ud83c\uddfe": "BYR",
+  "\ud83c\udde7\ud83c\uddff": "BZD",
+  "\ud83c\udde8\ud83c\udde9": "CDF",
+  "\ud83c\udde8\ud83c\udded": "CHF",
+  "\ud83c\udde8\ud83c\uddf1": "CLP",
+  "\ud83c\udde8\ud83c\uddf3": "CNY",
+  "\ud83c\udde8\ud83c\uddf4": "COP",
+  "\ud83c\udde8\ud83c\uddf7": "CRC",
+  "\ud83c\udde8\ud83c\uddfb": "CVE",
+  "\ud83c\udde8\ud83c\uddff": "CZK",
+  "\ud83c\udde9\ud83c\uddef": "DJF",
+  "\ud83c\udde9\ud83c\uddf0": "DKK",
+  "\ud83c\udde9\ud83c\uddf4": "DOP",
+  "\ud83c\udde9\ud83c\uddff": "DZD",
+  "\ud83c\uddea\ud83c\uddea": "EEK",
+  "\ud83c\uddea\ud83c\uddec": "EGP",
+  "\ud83c\uddea\ud83c\uddf7": "ERN",
+  "\ud83c\uddea\ud83c\uddf9": "ETB",
+  "\ud83c\uddeb\ud83c\uddf0": "FKP",
+  "\ud83c\uddec\ud83c\udde7": "GBP",
+  "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc77\udb40\udc6c\udb40\udc73\udb40\udc7f": "GBP",
+  "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f": "GBP",
+  "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f": "GBP",
+  "\ud83c\uddec\ud83c\uddea": "GEL",
+  "\ud83c\uddec\ud83c\udded": "GHS",
+  "\ud83c\uddec\ud83c\uddee": "GIP",
+  "\ud83c\uddec\ud83c\uddf3": "GNF",
+  "\ud83c\uddec\ud83c\uddf9": "GTQ",
+  "\ud83c\udded\ud83c\uddf0": "HKD",
+  "\ud83c\udded\ud83c\uddf3": "HNL",
+  "\ud83c\udded\ud83c\uddf7": "HRK",
+  "\ud83c\udded\ud83c\uddfa": "HUF",
+  "\ud83c\uddee\ud83c\udde9": "IDR",
+  "\ud83c\uddee\ud83c\uddf1": "ILS",
+  "\ud83c\uddee\ud83c\uddf3": "INR",
+  "\ud83c\uddee\ud83c\uddf6": "IQD",
+  "\ud83c\uddee\ud83c\uddf7": "IRR",
+  "\ud83c\uddee\ud83c\uddf8": "ISK",
+  "\ud83c\uddef\ud83c\uddf2": "JMD",
+  "\ud83c\uddef\ud83c\uddf4": "JOD",
+  "\ud83c\uddef\ud83c\uddf5": "JPY",
+  "\ud83c\uddf0\ud83c\uddec": "KES",
+  "\ud83c\uddf0\ud83c\udded": "KHR",
+  "\ud83c\uddf0\ud83c\uddf2": "KMF",
+  "\ud83c\uddf0\ud83c\uddf7": "KRW",
+  "\ud83c\uddf0\ud83c\uddfc": "KWD",
+  "\ud83c\uddf0\ud83c\uddfe": "KYD",
+  "\ud83c\uddf0\ud83c\uddff": "KZT",
+  "\ud83c\uddf0\ud83c\uddea": "KES",
+  "\ud83c\uddf1\ud83c\udde6": "LAK",
+  "\ud83c\uddf1\ud83c\udde7": "LBP",
+  "\ud83c\uddf1\ud83c\uddf0": "LKR",
+  "\ud83c\uddf1\ud83c\uddf7": "LRD",
+  "\ud83c\uddf1\ud83c\uddf9": "LTL",
+  "\ud83c\uddf1\ud83c\uddfb": "LVL",
+  "\ud83c\uddf1\ud83c\uddfe": "LYD",
+  "\ud83c\uddf2\ud83c\udde6": "MAD",
+  "\ud83c\uddf2\ud83c\udde9": "MDL",
+  "\ud83c\uddf2\ud83c\uddec": "MGA",
+  "\ud83c\uddf2\ud83c\uddf0": "MKD",
+  "\ud83c\uddf2\ud83c\uddf2": "MMK",
+  "\ud83c\uddf2\ud83c\uddf4": "MOP",
+  "\ud83c\uddf2\ud83c\uddfa": "MUR",
+  "\ud83c\uddf2\ud83c\uddfc": "MWK",
+  "\ud83c\uddf2\ud83c\uddfb": "MVR",
+  "\ud83c\uddf2\ud83c\uddfd": "MXN",
+  "\ud83c\uddf2\ud83c\uddfe": "MYR",
+  "\ud83c\uddf2\ud83c\uddff": "MZN",
+  "\ud83c\uddf3\ud83c\udde6": "NAD",
+  "\ud83c\uddf3\ud83c\uddec": "NGN",
+  "\ud83c\uddf3\ud83c\uddee": "NIO",
+  "\ud83c\uddf3\ud83c\uddf4": "NOK",
+  "\ud83c\uddf3\ud83c\uddf5": "NPR",
+  "\ud83c\uddf3\ud83c\uddff": "NZD",
+  "\ud83c\uddf4\ud83c\uddf2": "OMR",
+  "\ud83c\uddf5\ud83c\udde6": "PAB",
+  "\ud83c\uddf5\ud83c\uddea": "PEN",
+  "\ud83c\uddf5\ud83c\udded": "PHP",
+  "\ud83c\uddf5\ud83c\uddf0": "PKR",
+  "\ud83c\uddf5\ud83c\uddf1": "PLN",
+  "\ud83c\uddf5\ud83c\uddfe": "PYG",
+  "\ud83c\uddf6\ud83c\udde6": "QAR",
+  "\ud83c\uddf7\ud83c\uddf4": "RON",
+  "\ud83c\uddf7\ud83c\uddf8": "RSD",
+  "\ud83c\uddf7\ud83c\uddfa": "RUB",
+  "\ud83c\uddf7\ud83c\uddfc": "RWF",
+  "\ud83c\uddf8\ud83c\udde6": "SAR",
+  "\ud83c\uddf8\ud83c\udde7": "SBD",
+  "\ud83c\uddf8\ud83c\udde9": "SDG",
+  "\ud83c\uddf8\ud83c\uddea": "SEK",
+  "\ud83c\uddf8\ud83c\uddec": "SGD",
+  "\ud83c\uddf8\ud83c\uddf1": "SLL",
+  "\ud83c\uddf8\ud83c\uddf4": "SOS",
+  "\ud83c\uddf8\ud83c\uddf8": "SSP",
+  "\ud83c\uddf8\ud83c\uddf9": "STN",
+  "\ud83c\uddf8\ud83c\uddfe": "SYP",
+  "\ud83c\uddf8\ud83c\uddff": "SZL",
+  "\ud83c\uddf9\ud83c\udded": "TJS",
+  "\ud83c\uddf9\ud83c\uddf3": "TND",
+  "\ud83c\uddf9\ud83c\uddf4": "TOP",
+  "\ud83c\uddf9\ud83c\uddf7": "TRY",
+  "\ud83c\uddf9\ud83c\uddf9": "TTD",
+  "\ud83c\uddf9\ud83c\uddfc": "TWD",
+  "\ud83c\uddf9\ud83c\uddff": "TZS",
+  "\ud83c\uddfa\ud83c\udde6": "UAH",
+  "\ud83c\uddfa\ud83c\uddec": "UGX",
+  "\ud83c\uddfa\ud83c\uddfe": "UYU",
+  "\ud83c\uddfa\ud83c\uddff": "UZS",
+  "\ud83c\uddfb\ud83c\uddea": "VEF",
+  "\ud83c\uddfb\ud83c\uddf3": "VND",
+  "\ud83c\uddfb\ud83c\uddfa": "VUV",
+  "\ud83c\udde8\ud83c\uddeb": "XAF",
+  "\ud83c\udde6\ud83c\uddec": "XCD",
+  "\ud83c\udde8\ud83c\uddee": "XOF",
+  "\ud83c\uddf5\ud83c\uddeb": "XPF",
+  "\ud83c\uddfe\ud83c\uddea": "YER",
+  "\ud83c\uddff\ud83c\udde6": "ZAR",
+  "\ud83c\uddff\ud83c\uddf2": "ZMK"
+}
