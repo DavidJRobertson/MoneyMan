@@ -106,46 +106,27 @@ class CurrencyMessageHandler:
             return None
 
     async def scan_for_currency_mentions(self, msg: str):
-        result = []
-
-        # £12.34 $12.34 €12.34
-        symbol_prefix_matches = list(re.finditer(r'([£€$₹])\s?(\d+(?:\.\d{1,2})?)', msg))
-        for match in symbol_prefix_matches:
-            code = self.currency_symbol_to_code(match[1])
-            amount = str(float(match[2]))
-            result.append(" ".join([code, amount]))
-
-        # 12.34$ 12.34€
-        symbol_suffix_matches = list(re.finditer(r'(\d+(?:\.\d{1,2})?)\s?([€$₹])', msg))
-        for match in symbol_suffix_matches:
-            code = self.currency_symbol_to_code(match[2])
-            amount = str(float(match[1]))
-            result.append(" ".join([code, amount]))
-
-        # GBP 12.34
-        code_prefix_matches = list(re.finditer(r'(?<!\w)([a-zA-Z]{3})\s?(\d+(?:\.\d{1,2})?)', msg))
-        for match in code_prefix_matches:
-            code = match[1].upper()
-            amount = str(float(match[2]))
-            result.append(" ".join([code, amount]))
-
-        # 12.34 GBP
-        code_suffix_matches = list(re.finditer(r'(\d+(?:\.\d{1,2})?)\s?([a-zA-Z]{3})(?!\w)', msg))
-        for match in code_suffix_matches:
-            code = match[2].upper()
-            amount = str(float(match[1]))
-            result.append(" ".join([code, amount]))
+        expressions = [
+            r'(?P<currency>[£€$₹])\s?(?P<quantity>\d+(?:\.\d{1,2})?)',  # £12.34 $12.34 €12.34
+            r'(?P<quantity>\d+(?:\.\d{1,2})?)\s?(?P<currency>[€$₹])',  # 12.34$ 12.34€
+            r'(?<!\w)(?P<currency>[a-zA-Z]{3})\s?(?P<quantity>\d+(?:\.\d{1,2})?)',  # GBP 12.34
+            r'(?P<quantity>\d+(?:\.\d{1,2})?)\s?(?P<currency>[a-zA-Z]{3})(?!\w)'  # 12.34 GBP
+        ]
+        result_tuples = []
+        for expression in expressions:
+            for match in re.finditer(expression, msg):
+                result_tuples.append((self.currency_symbol_to_code(match['currency']).upper(), float(match['quantity'])))
 
         # Strip out duplicates
-        result = list(dict.fromkeys(result))
+        result_tuples = list(dict.fromkeys(result_tuples))
 
         # Filter out ignored currencies and unknown
         known_currencies = await self.currency_converter.known_currencies()
         acceptable_currencies = set(known_currencies) - set(self.ignored_currencies)
-        result = list(filter(lambda x: x.split(" ")[0] in acceptable_currencies, result))
+        result_tuples = list(filter(lambda x: x[0] in acceptable_currencies, result_tuples))
 
-        # Return the array of strings, each in the format of "GBP 12.34"
-        return result
+        # Return the array of tuples, each in the format of ("GBP", 12.34)
+        return result_tuples
 
     def currency_symbol_to_code(self, symbol):
         for row in self.symbol_data:
@@ -155,9 +136,8 @@ class CurrencyMessageHandler:
 
     async def build_currency_reply(self, currency_mention):
         print("Building currency reply for input {0}".format(currency_mention))
-        split = currency_mention.split(" ")
-        from_currency = split[0]
-        from_amount = float(split[1])
+        from_currency = currency_mention[0]
+        from_amount = currency_mention[1]
 
         target_results = []
         for target_currency in self.selected_currencies:
