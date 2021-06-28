@@ -6,6 +6,7 @@ import re
 import json
 import aiohttp
 import os
+import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -215,7 +216,7 @@ class MoneyManClient(discord.Client):
             reply = "You can add this bot to your own server using this link: {}".format(link)
             await message.channel.send(reply)
 
-    def find_history_message(self, source_message):
+    async def find_history_message(self, source_message):
         for history_msg in self.history:
             if history_msg.reference.message_id == source_message.id:
                 # Try to find the same message in self.cached_messages, because it may be more up-to-date.
@@ -223,7 +224,30 @@ class MoneyManClient(discord.Client):
                     if cm.id == history_msg.id:
                         return cm
                 return history_msg
+
+        for cached_msg in self.cached_messages:
+            ref = cached_msg.reference
+            if (cached_msg.author == self.user) and (ref is not None) and (ref.message_id == source_message.id):
+                return cached_msg
+
+        ch_messages = await source_message.channel.history(after=source_message, limit=25).flatten()
+        for ch_msg in ch_messages:
+            ref = ch_msg.reference
+            if (ch_msg.author == self.user) and (ref is not None) and (ref.message_id == source_message.id):
+                return ch_msg
+
         return None
+
+    async def djr_find_msg(self, channel_id, message_id):
+        for cm in self.cached_messages:
+            if cm.id == message_id:
+                return cm
+        channel = self.get_channel(channel_id)
+        try:
+            print("Fetching message {}".format(message_id))
+            return await channel.fetch_message(message_id)
+        except discord.DiscordException:
+            return None
 
     async def on_message_delete(self, message):
         # Ignore messages from bots (including self)
@@ -231,53 +255,71 @@ class MoneyManClient(discord.Client):
             return
 
         # If we replied to this deleted message recently, delete our reply.
-        history_msg = self.find_history_message(message)
+        history_msg = await self.find_history_message(message)
         if history_msg is not None:
             await history_msg.delete()
             self.history.remove(history_msg)
 
-    async def on_message_edit(self, message_before_edit, message):
+    async def on_raw_message_edit(self, event):
+        message = await self.djr_find_msg(event.channel_id, event.message_id)
+        if message is None:
+            return
+
         # Ignore messages from bots (including self)
         if message.author.bot:
             return
 
         # The edit may mean we have to update our reply or create a new reply.
-        history_msg = self.find_history_message(message)
+        history_msg = await self.find_history_message(message)
         if history_msg is not None:
             await self.update_existing_response(history_msg)
         else:
+            if (datetime.datetime.now - message.created_at).seconds > (20 * 60):
+                # Don't add new reply to old messages.
+                return
             new_response = await self.cmh.handle_message(message.content)
             if new_response is not None:
                 reply_msg = await message.reply(new_response, mention_author=False)
                 self.history.append(reply_msg)
 
-    async def on_reaction_add(self, reaction, user):
-        await self.update_existing_response(reaction.message)
-
-    async def on_reaction_remove(self, reaction, user):
-        await self.update_existing_response(reaction.message)
-
-    async def on_reaction_clear(self, message, reactions):
+    async def on_raw_reaction_add(self, payload):
+        message = await self.djr_find_msg(payload.channel_id, payload.message_id)
         await self.update_existing_response(message)
 
-    async def on_reaction_clear_emoji(self, reaction):
-        await self.update_existing_response(reaction.message)
+    async def on_raw_reaction_remove(self, payload):
+        message = await self.djr_find_msg(payload.channel_id, payload.message_id)
+        await self.update_existing_response(message)
+
+    async def on_raw_reaction_clear(self, payload):
+        message = await self.djr_find_msg(payload.channel_id, payload.message_id)
+        await self.update_existing_response(message)
+
+    async def on_raw_reaction_clear_emoji(self, payload):
+        message = await self.djr_find_msg(payload.channel_id, payload.message_id)
+        await self.update_existing_response(message)
 
     async def update_existing_response(self, existing_response_msg):
-        if existing_response_msg in self.history:
-            source_msg_ref = existing_response_msg.reference
-            if source_msg_ref is None:
-                return
-            source_msg = source_msg_ref.cached_message
+        if existing_response_msg is None:
+            return
+        if (existing_response_msg not in self.history) and (existing_response_msg.author != self.user):
+            return
+
+        source_msg_ref = existing_response_msg.reference
+        if source_msg_ref is None:
+            return
+        source_msg = source_msg_ref.cached_message
+        if source_msg is None:
+            source_msg = await self.djr_find_msg(source_msg_ref.channel_id, source_msg_ref.message_id)
             if source_msg is None:
                 return
 
-            new_response = await self.cmh.handle_message(source_msg.content, response_reactions=existing_response_msg.reactions)
-            if new_response is None:
-                await existing_response_msg.delete()
-                self.history.remove(existing_response_msg)
-            elif existing_response_msg.content != new_response:
-                await existing_response_msg.edit(content=new_response, allowed_mentions=discord.AllowedMentions.none())
+        new_response = await self.cmh.handle_message(source_msg.content,
+                                                     response_reactions=existing_response_msg.reactions)
+        if new_response is None:
+            await existing_response_msg.delete()
+            self.history.remove(existing_response_msg)
+        elif existing_response_msg.content != new_response:
+            await existing_response_msg.edit(content=new_response, allowed_mentions=discord.AllowedMentions.none())
 
 
 if __name__ == "__main__":
