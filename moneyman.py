@@ -166,7 +166,7 @@ class CurrencyMessageHandler:
     def get_currencies_from_response_reactions(self, response_reactions):
         emojis = []
         for reaction in response_reactions:
-            if (reaction.count > 0) and (not reaction.custom_emoji):
+            if (reaction.count > 0) and (not reaction.is_custom_emoji()):
                 emojis.append(reaction.emoji)
 
         currencies = []
@@ -203,6 +203,7 @@ class MoneyManClient(discord.Client):
         print("Removed from server: {0.name} (id: {0.id})".format(guild))
 
     async def on_message(self, message):
+        print("Message received: {0})".format(message))
         # Ignore messages from bots (including self)
         if message.author.bot:
             return
@@ -323,5 +324,8 @@ class MoneyManClient(discord.Client):
 
 
 if __name__ == "__main__":
-    client = MoneyManClient()
+    intents = discord.Intents.default()
+    intents.message_content = True
+    intents.guilds = True
+    client = MoneyManClient(intents=intents)
     client.run(os.environ['DISCORD_TOKEN'])
